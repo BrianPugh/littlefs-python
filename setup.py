@@ -11,6 +11,7 @@ EXTENSIONS = [
                   ('LFS_NO_DEBUG', '1'),
                   ('LFS_NO_WARN', '1'),
                   ('LFS_NO_ERROR', '1'),
+                  ('LFS_MULTIVERSION', '1'),
                 # ('LFS_YES_TRACE', '1')
               ],
               extra_compile_args=['-std=c99']
@@ -47,6 +48,11 @@ setup(
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Embedded Systems',
         'Topic :: Software Development :: Libraries',

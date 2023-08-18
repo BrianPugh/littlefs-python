@@ -12,13 +12,19 @@ jobs:
 
     env:
       CIBW_BEFORE_BUILD: pip install -r requirements.txt
-      CIBW_SKIP: "pp* *-win_arm64"
+      CIBW_SKIP: "pp* *-win_arm64 *-musllinux_aarch64"
       CIBW_ARCHS_LINUX: "x86_64 i686 aarch64"
 
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: "recursive"
+
+      - name: Setup QEMU  # Needed to build aarch64 wheels
+        if: runner.os == 'Linux'
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: all
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.12.3
@@ -101,7 +107,7 @@ jobs:
           name: artifact
           path: dist
 
-      - uses: pypa/gh-action-pypi-publish@v1.8.4
+      - uses: pypa/gh-action-pypi-publish@v1.8.8
         with:
           user: __token__
           password: ${{ secrets.pypi_api_token }}
